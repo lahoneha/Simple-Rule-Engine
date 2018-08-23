@@ -15,15 +15,12 @@ public final class RuleManager {
 
 		Scanner sc = new Scanner(System.in);
 		System.out
-				.println("Enter a series of Integers and press enter to exit");
-		while (!sc.hasNext("exit")) {
-			Scanner lineSc = new Scanner(sc.nextLine());
-			while (lineSc.hasNextInt()) {
-				if (lineSc.equals(""))
-					break;
-				inputList.add(lineSc.nextInt());
-			}
-			lineSc.close();
+				.println("Enter a series of Integers and type 'exit' when finished typing the list");
+		while (sc.hasNext() && !sc.hasNext("exit")) {
+			if (sc.hasNextInt())
+				inputList.add(sc.nextInt());
+			else
+				sc.next();
 		}
 		sc.close();
 		int c = inputList.size();
@@ -31,11 +28,12 @@ public final class RuleManager {
 			System.out.println("Please enter valid input");
 			return;
 		}
-		
-		//building an array of ints from arrayList
+
+		// building an array of ints from arrayList
 		inputArray = new int[c];
 		for (int i = 0; i < inputList.size(); i++) {
 			if (inputList != null && inputList.get(i) != null) {
+				System.out.println(inputList.get(i));
 				inputArray[i] = inputList.get(i);
 			}
 		}
